@@ -17,7 +17,7 @@ const api = axios.create({
   // For example, `api.get("/videos")` will hit "http://<host>/api/videos".
   // This assumes a reverse-proxy (e.g. Nginx or Vite devServer proxy) forwards
   // "/api/*" requests to the actual backend server.
-  baseURL: "/api",
+  baseURL: import.meta.env.VITE_API_URL || "/api",
 
   // Instructs the browser to include cookies (and other credentials such as
   // HTTP auth headers) in cross-origin requests.
