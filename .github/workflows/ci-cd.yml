@@ -16,15 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
       - name: Install backend dependencies
-        working-directory: ./backend
+        working-directory: ./FinpOI/backend
         run: npm install
 
   # Job 2: Install and build frontend
@@ -33,19 +33,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
       - name: Install frontend dependencies
-        working-directory: ./frontend
+        working-directory: ./FinpOI/frontend
         run: npm install
 
       - name: Build React app
-        working-directory: ./frontend
+        working-directory: ./FinpOI/frontend
         run: npm run build
         env:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
@@ -57,10 +57,10 @@ jobs:
     needs: [backend, frontend]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build backend Docker image
-        run: docker build -t edulearn-backend ./backend
+        run: docker build -t edulearn-backend ./FinpOI/backend
 
       - name: Build frontend Docker image
-        run: docker build -t edulearn-frontend ./frontend
+        run: docker build -t edulearn-frontend ./FinpOI/frontend
