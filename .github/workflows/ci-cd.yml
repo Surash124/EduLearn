@@ -46,7 +46,7 @@ jobs:
 
       - name: Build React app
         working-directory: ./FinpOI/frontend
-        run: npx vite build
+        run: ./node_modules/.bin/vite build
         env:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
 
